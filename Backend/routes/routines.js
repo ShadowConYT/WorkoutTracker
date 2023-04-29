@@ -10,14 +10,14 @@ router.route('/').get((req, res) => {
 
 // Add Routine
 router.route('/add').post((req, res) => {
-  const routinename = req.body.routinename;
-  const routinedetail = req.body.routinedetail;
-  const routinetype = req.body.routinetype;
+  const routineName = req.body.routineName;
+  const routineDetail = req.body.routineDetail;
+  const routineType = req.body.routineType;
 
   const newRoutine = new Routine({
-    routinename,
-    routinedetail,
-    routinetype
+    routineName,
+    routineDetail,
+    routineType
   });
 
   newRoutine.save()
@@ -43,9 +43,9 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Routine.findById(req.params.id)
     .then(routine => {
-      routine.routinename = req.body.routinename;
-      routine.routinedetail = req.body.routinedetail;
-      routine.routinetype = req.body.routinetype;
+      routine.routineName = req.body.routineName;
+      routine.routineDetail = req.body.routineDetail;
+      routine.routineType = req.body.routineType;
 
       routine.save()
         .then(() => res.json('Routine updated!'))

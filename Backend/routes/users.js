@@ -20,9 +20,9 @@ router.route('/add').post((req, res) => {
   const bmi = Number(req.body.bmi);
   const bmiCategory = req.body.bmiCategory;
   const bmr = Number(req.body.bmr);
-  const dailycalories = Number(req.body.dailycalories);
+  const dailyCalories = Number(req.body.dailycalories);
 
-  const newUser = new User({username, gender, age, weight, height, unit, activity, bmi, bmiCategory, bmr, dailycalories});
+  const newUser = new User({username, gender, age, weight, height, unit, activity, bmi, bmiCategory, bmr, dailyCalories: dailyCalories});
 
   newUser.save()
   .then(response => res.json({'data': 'User added!', 'id': response._id}))
@@ -57,7 +57,7 @@ router.route('/update/:id').post((req, res) => {
       user.bmi = Number(req.body.bmi);
       user.bmiCategory = req.body.bmiCategory;
       user.bmr = Number(req.body.bmr);
-      user.dailycalories = Number(req.body.dailycalories);
+      user.dailyCalories = Number(req.body.dailyCalories);
 
       user.save()
         .then(response => res.json({'data': 'User added!', 'id': response._id}))

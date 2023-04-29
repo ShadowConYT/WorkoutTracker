@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Navbar from "./navbar.component";
 
 export default class CreateWorkoutLog extends Component {
   constructor(props) {
@@ -14,8 +15,8 @@ export default class CreateWorkoutLog extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      workoutdate: new Date(),
-      routinename: '',
+      workoutDate: new Date(),
+      routineName: '',
       routines: [],
       duration: 0,
       username: '',
@@ -41,8 +42,8 @@ export default class CreateWorkoutLog extends Component {
     .then(response => {
       if (response.data.length > 0) {
         this.setState({
-          routines: response.data.map(routine => routine.routinename),
-          routinename: response.data[0].routinename
+          routines: response.data.map(routine => routine.routineName),
+          routineName: response.data[0].routineName
         })
       }
     })
@@ -59,7 +60,7 @@ export default class CreateWorkoutLog extends Component {
 
   onChangeRoutineName(e) {
     this.setState({
-      routinename: e.target.value
+      routineName: e.target.value
     });
   }
 
@@ -78,16 +79,16 @@ export default class CreateWorkoutLog extends Component {
   onSubmit(e) {
     e.preventDefault();
   
-    const workoutlog = {
-      workoutdate: this.state.workoutdate,
-      routinename: this.state.routinename,
+    const workoutLog = {
+      workoutDate: this.state.workoutDate,
+      routineName: this.state.routineName,
       duration: this.state.duration,
       username: this.state.username,
     };
   
-    console.log(workoutlog);
+    console.log(workoutLog);
 
-    axios.post('http://localhost:5000/workoutlogs/add', workoutlog)
+    axios.post('http://localhost:5000/workoutLogs/add', workoutLog)
     .then(res => console.log(res.data));
 
     window.location = '/workout';
@@ -96,13 +97,14 @@ export default class CreateWorkoutLog extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <h3>Log Workout</h3>
         <form onSubmit={this.onSubmit}>
         <div className="form-group">
             <label>Workout Date: </label>
             <div>
               <DatePicker
-                selected={this.state.workoutdate}
+                selected={this.state.workoutDate}
                 onChange={this.onChangeWorkoutDate}
                 showTimeSelect
                 timeFormat="HH:mm"
@@ -116,7 +118,7 @@ export default class CreateWorkoutLog extends Component {
             <select ref="userInput"
                 required
                 className="form-control"
-                value={this.state.routinename}
+                value={this.state.routineName}
                 onChange={this.onChangeRoutineName}>
                 {
                   this.state.routines.map(function(routine) {

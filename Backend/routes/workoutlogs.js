@@ -1,60 +1,62 @@
-const router = require('express').Router();
-let Workoutlog = require('../models/workoutlog.model');
+const router = require("express").Router();
+let WorkoutLog = require("../models/workoutlog.model");
 
-// Get All Workoutlogs
-router.route('/').get((req, res) => {
-  Workoutlog.find()
-    .then(workoutlogs => res.json(workoutlogs))
-    .catch(err => res.status(400).json('Error: ' + err));
+// Get All WorkoutLogs
+router.route("/").get((req, res) => {
+  WorkoutLog.find()
+    .then((workoutLogs) => res.json(workoutLogs))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// Add Workoutlog
-router.route('/add').post((req, res) => {
-  const workoutdate = Date.parse(req.body.workoutdate);
-  const routinename = req.body.routinename;
+// Add WorkoutLog
+router.route("/add").post((req, res) => {
+  const workoutDate = Date.parse(req.body.workoutDate);
+  const routineName = req.body.routinename;
   const duration = Number(req.body.duration);
   const username = req.body.username;
 
-  const newWorkoutlog = new Workoutlog({
-    workoutdate,
-    routinename,
+  const newWorkoutLog = new WorkoutLog({
+    workoutDate,
+    routineName,
     duration,
-    username
+    username,
   });
 
-  newWorkoutlog.save()
-  .then(() => res.json('Workout Log added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
+  newWorkoutLog
+    .save()
+    .then(() => res.json("Workout Log added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// Get Workoutlog
-router.route('/:id').get((req, res) => {
-  Workoutlog.findById(req.params.id)
-    .then(workoutlog => res.json(workoutlog))
-    .catch(err => res.status(400).json('Error: ' + err));
+// Get WorkoutLog
+router.route("/:id").get((req, res) => {
+  WorkoutLog.findById(req.params.id)
+    .then((workoutLog) => res.json(workoutLog))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// Delete Workoutlog
-router.route('/:id').delete((req, res) => {
-  Workoutlog.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Workout Log deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
+// Delete WorkoutLog
+router.route("/:id").delete((req, res) => {
+  WorkoutLog.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Workout Log deleted."))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// Update Workoutlog
-router.route('/update/:id').post((req, res) => {
-  Workoutlog.findById(req.params.id)
-    .then(workoutlog => {
-      workoutlog.workoutdate = Date.parse(req.body.workoutdate);
-      workoutlog.routinename = req.body.routinename;
-      workoutlog.duration = Number(req.body.duration);
-      workoutlog.username = req.body.username;
+// Update WorkoutLog
+router.route("/update/:id").post((req, res) => {
+  WorkoutLog.findById(req.params.id)
+    .then((workoutLog) => {
+      workoutLog.workoutdate = Date.parse(req.body.workoutdate);
+      workoutLog.routinename = req.body.routinename;
+      workoutLog.duration = Number(req.body.duration);
+      workoutLog.username = req.body.username;
 
-      workoutlog.save()
-        .then(() => res.json('Workout Log updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+      workoutLog
+        .save()
+        .then(() => res.json("Workout Log updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
     })
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;

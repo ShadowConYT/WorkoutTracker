@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import DatePicker from 'react-datepicker';
+import React, { Component } from "react";
+import axios from "axios";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Navbar from "./navbar.component";
 
-export default class EditeWorkoutLog extends Component {
+export default class EditWorkoutLog extends Component {
   constructor(props) {
     super(props);
 
@@ -14,108 +15,116 @@ export default class EditeWorkoutLog extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      workoutdate: new Date(),
-      routinename: '',
+      workoutDate: new Date(),
+      routineName: "",
       routines: [],
       duration: 0,
-      username: '',
-      users: []
-    }
+      username: "",
+      users: [],
+    };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/workoutlogs/'+this.props.match.params.id)
-    .then(response => {
-      this.setState({
-        workoutdate: new Date(response.data.workoutdate),
-        routinename: response.data.routinename,
-        duration: response.data.duration,
-        username: response.data.username,
-      })   
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-
-    axios.get('http://localhost:5000/users/')
-    .then(response => {
-      if (response.data.length > 0) {
+    axios
+      .get("http://localhost:5000/workoutLogs/" + this.props.match.params.id)
+      .then((response) => {
         this.setState({
-          users: response.data.map(user => user.username),
-        })
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+          workoutDate: new Date(response.data.workoutDate),
+          routineName: response.data.routineName,
+          duration: response.data.duration,
+          username: response.data.username,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    axios.get('http://localhost:5000/routines/')
-    .then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          routines: response.data.map(routine => routine.routinename),
-        })
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    axios
+      .get("http://localhost:5000/users/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map((user) => user.username),
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:5000/routines/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            routines: response.data.map((routine) => routine.routineName),
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   onChangeWorkoutDate(date) {
     this.setState({
-      workoutdate: date
+      workoutDate: date,
     });
   }
 
   onChangeRoutineName(e) {
     this.setState({
-      routinename: e.target.value
+      routineName: e.target.value,
     });
   }
 
   onChangeDuration(e) {
     this.setState({
-      duration: e.target.value
+      duration: e.target.value,
     });
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   }
 
   onSubmit(e) {
     e.preventDefault();
-  
-    const workoutlog = {
-      workoutdate: new Date(this.state.workoutdate),
-      routinename: this.state.routinename,
+
+    const workoutLog = {
+      workoutDate: new Date(this.state.workoutDate),
+      routineName: this.state.routineName,
       duration: this.state.duration,
       username: this.state.username,
     };
-  
-    console.log(workoutlog);
 
-    axios.post('http://localhost:5000/workoutlogs/update/' + this.props.match.params.id, workoutlog)
-    .then(res => console.log(res.data)); 
-    console.log('Workout Log Updated!');   
-    
-    window.location = '/workout';
+    console.log(workoutLog);
 
+    axios
+      .post(
+        "http://localhost:5000/workoutLogs/update/" +
+          this.props.match.params.id,
+        workoutLog
+      )
+      .then((res) => console.log(res.data));
+    console.log("Workout Log Updated!");
+
+    window.location = "/workout";
   }
 
   render() {
     return (
       <div>
+        <Navbar />
         <h3>Edit Workout</h3>
         <form onSubmit={this.onSubmit}>
-        <div className="form-group">
+          <div className="form-group">
             <label>Workout Date: </label>
             <div>
               <DatePicker
-                selected={this.state.workoutdate}
+                selected={this.state.workoutDate}
                 onChange={this.onChangeWorkoutDate}
                 showTimeSelect
                 timeFormat="HH:mm"
@@ -124,54 +133,60 @@ export default class EditeWorkoutLog extends Component {
               />
             </div>
           </div>
-        <div className="form-group"> 
+          <div className="form-group">
             <label>Routine Name: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.routinename}
-                onChange={this.onChangeRoutineName}>
-                {
-                  this.state.routines.map(function(routine) {
-                    return <option 
-                      key={routine}
-                      value={routine}>{routine}
-                      </option>;
-                  })
-                }
+            <select
+              ref="userInput"
+              required
+              className="form-control"
+              value={this.state.routineName}
+              onChange={this.onChangeRoutineName}
+            >
+              {this.state.routines.map(function (routine) {
+                return (
+                  <option key={routine} value={routine}>
+                    {routine}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="form-group">
             <label>Duration (in minutes): </label>
-            <input 
-                type="text" 
-                className="form-control"
-                value={this.state.duration}
-                onChange={this.onChangeDuration}
-                />
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.duration}
+              onChange={this.onChangeDuration}
+            />
           </div>
-          <div className="form-group"> 
+          <div className="form-group">
             <label>Username: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}>
-                {
-                  this.state.users.map(function(user) {
-                    return <option 
-                      key={user}
-                      value={user}>{user}
-                      </option>;
-                  })
-                }
+            <select
+              ref="userInput"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            >
+              {this.state.users.map(function (user) {
+                return (
+                  <option key={user} value={user}>
+                    {user}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="form-group">
-            <input type="submit" value="Edit Workout" className="btn btn-primary" />
+            <input
+              type="submit"
+              value="Edit Workout"
+              className="btn btn-primary"
+            />
           </div>
         </form>
       </div>
-    )
+    );
   }
 }

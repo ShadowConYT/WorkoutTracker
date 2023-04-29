@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
+import Navbar from "./navbar.component";
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -20,81 +21,83 @@ export default class CreateUser extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: '',
-      gender: 'Male',
+      username: "",
+      gender: "Male",
       age: 0,
       weight: 0,
       height: 0,
-      unit: 'Metric',
-      activity: 'Sedentary',
+      unit: "Metric",
+      activity: "Sedentary",
       bmi: 0,
-      bmiCategory: '',
+      bmiCategory: "",
       bmr: 0,
-      dailycalories: 0
-    }
+      dailyCalories: 0,
+    };
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
-    })
+      username: e.target.value,
+    });
   }
 
   onChangeGender(e) {
     this.setState({
-        gender: e.target.value
-    })
+      gender: e.target.value,
+    });
   }
 
   onChangeAge(e) {
     this.setState({
-        age: e.target.value
-    })
+      age: e.target.value,
+    });
   }
 
   onChangeWeight(e) {
     this.setState({
-        weight: e.target.value
-    })
+      weight: e.target.value,
+    });
   }
 
   onChangeHeight(e) {
     this.setState({
-        height: e.target.value
-    })
+      height: e.target.value,
+    });
   }
 
   onChangeUnit(e) {
     this.setState({
-        unit: e.target.value
-    })
+      unit: e.target.value,
+    });
   }
 
   onChangeActivity(e) {
     this.setState({
-        activity: e.target.value
-    })
+      activity: e.target.value,
+    });
   }
 
   calculateBMI = () => {
-    let w = 0, h = 0, bmi = 0;
-    if(this.state.unit === "Metric"){
-        h = this.state.height;
-        w = this.state.weight;
-    } else if (this.state.unit === "Imperial"){
-        h = this.state.height*2.54;
-        w = this.state.weight/2.2;
+    let w = 0,
+      h = 0,
+      bmi;
+    if (this.state.unit === "Metric") {
+      h = this.state.height;
+      w = this.state.weight;
+    } else if (this.state.unit === "Imperial") {
+      h = this.state.height * 2.54;
+      w = this.state.weight / 2.2;
     }
-    bmi = w/(h*h)*10000;
+    bmi = (w / (h * h)) * 10000;
     this.setState({
-        bmi: bmi.toFixed(1)
+      bmi: bmi.toFixed(1),
     });
     return bmi;
-  }
+  };
 
   calculateBMICategory = (bmi) => {
-    let bmiCategory = '';
-    if(bmi === 0){
+    let bmiCategory = "";
+    if (bmi === 0) {
       bmiCategory = "";
     } else if (bmi <= 18.5) {
       bmiCategory = "Underweight";
@@ -106,55 +109,57 @@ export default class CreateUser extends Component {
       bmiCategory = "Obesity";
     }
     this.setState({
-      bmiCategory: bmiCategory
+      bmiCategory: bmiCategory,
     });
     return bmiCategory;
-  }
+  };
 
   calculateBMR = () => {
-    let w = 0, h = 0, bmr = 0;
-    if(this.state.unit === "Metric"){
-        h = this.state.height;
-        w = this.state.weight;
-    } else if (this.state.unit === "Imperial"){
-        h = this.state.height*2.54;
-        w = this.state.weight/2.2;
+    let w = 0,
+      h = 0,
+      bmr = 0;
+    if (this.state.unit === "Metric") {
+      h = this.state.height;
+      w = this.state.weight;
+    } else if (this.state.unit === "Imperial") {
+      h = this.state.height * 2.54;
+      w = this.state.weight / 2.2;
     }
-    if(this.state.gender === "Male"){
-        bmr = (h*6.25) + (w*9.99) - (this.state.age*4.92) + 5;
-      } else if (this.state.gender === "Female"){
-        bmr = (h*6.25) + (w*9.99) - (this.state.age*4.92) - 161;
-      }
-      this.setState({
-          bmr: bmr.toFixed(0)
-      });
-      return bmr;
-  }
-
-  calculateDailyCalories = (bmr) => {
-    let dailycalories = 0;
-    if(this.state.activity === "Sedentary"){
-      dailycalories = bmr*1.2;
-    } else if (this.state.activity === "Light Exercise"){
-      dailycalories = bmr*1.375;
-    } else if (this.state.activity === "Moderate Exercise"){
-      dailycalories = bmr*1.55;
-    } else if (this.state.activity === "Heavy Exercise"){
-      dailycalories = bmr*1.725;
-    } else if (this.state.activity === "Athlete"){
-      dailycalories = bmr*1.9;
+    if (this.state.gender === "Male") {
+      bmr = h * 6.25 + w * 9.99 - this.state.age * 4.92 + 5;
+    } else if (this.state.gender === "Female") {
+      bmr = h * 6.25 + w * 9.99 - this.state.age * 4.92 - 161;
     }
     this.setState({
-      dailycalories: dailycalories.toFixed(0)
+      bmr: bmr.toFixed(0),
     });
-  }
+    return bmr;
+  };
+
+  calculateDailyCalories = (bmr) => {
+    let dailyCalories = 0;
+    if (this.state.activity === "Sedentary") {
+      dailyCalories = bmr * 1.2;
+    } else if (this.state.activity === "Light Exercise") {
+      dailyCalories = bmr * 1.375;
+    } else if (this.state.activity === "Moderate Exercise") {
+      dailyCalories = bmr * 1.55;
+    } else if (this.state.activity === "Heavy Exercise") {
+      dailyCalories = bmr * 1.725;
+    } else if (this.state.activity === "Athlete") {
+      dailyCalories = bmr * 1.9;
+    }
+    this.setState({
+      dailyCalories: dailyCalories.toFixed(0),
+    });
+  };
 
   updateDetails = () => {
     let bmi = this.calculateBMI();
     this.calculateBMICategory(bmi);
     let bmr = this.calculateBMR();
     this.calculateDailyCalories(bmr);
-  }
+  };
 
   onSubmit(e) {
     e.preventDefault();
@@ -170,107 +175,125 @@ export default class CreateUser extends Component {
       bmi: this.state.bmi,
       bmiCategory: this.state.bmiCategory,
       bmr: this.state.bmr,
-      dailycalories: this.state.dailycalories
-    }
+      dailyCalories: this.state.dailyCalories,
+    };
 
     console.log(user);
 
-    axios.post('http://localhost:5000/users/add', user)
-      .then(res => {
-        console.log(res);
-        window.location = '/user/profile/'+res.data.id;
-      });
+    axios.post("http://localhost:5000/users/add", user).then((res) => {
+      console.log(res);
+      window.location = "/user/profile/" + res.data.id;
+    });
   }
 
   render() {
     return (
       <div>
+        <Navbar />
         <h3>Create New User</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
+          <div className="form-group">
             <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
-          </div>
-          <div className="form-group"> 
-            <label>Gender: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.gender}
-                onChange={this.onChangeGender}>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>            
-            </select>
-          </div>
-          <div className="form-group"> 
-            <label>Age: </label>
-            <input  type="number"
-                required
-                className="form-control"
-                value={this.state.age}
-                onChange={this.onChangeAge}
-                />
-          </div>
-          <div className="form-group"> 
-            <label>Weight: </label>
-            <input  type="number"
-                required
-                className="form-control"
-                value={this.state.weight}
-                onChange={this.onChangeWeight}
-                />
-          </div>
-          <div className="form-group"> 
-            <label>Height: </label>
-            <input  type="number"
-                required
-                className="form-control"
-                value={this.state.height}
-                onChange={this.onChangeHeight}
-                />
-          </div>
-          <div className="form-group"> 
-            <label>Unit: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.unit}
-                onChange={this.onChangeUnit}>
-                    <option value="Metric">Metric</option>
-                    <option value="Imperial">Imperial</option>         
-            </select>
-          </div>
-          <div className="form-group"> 
-            <label>Activity: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.activity}
-                onChange={this.onChangeActivity}>
-                    <option value="Sedentary">Sedentary</option>
-                    <option value="Light Exercise">Light Exercise</option>
-                    <option value="Moderate Exercise">Moderate Exercise</option>
-                    <option value="Heavy Exercise">Heavy Exercise</option>
-                    <option value="Athlete">Athlete</option>         
-            </select>
-          </div>
-          <div className="form-group"> 
-            <h2>BMI: {this.state.bmi} Category: {this.state.bmiCategory}</h2>
-            <h2>BMR: {this.state.bmr}</h2>
-            <h2>Daily Calories: {this.state.dailycalories} </h2>
-            <button type="button" onClick={() => this.updateDetails()}>Update Details</button>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
+            <label>Gender: </label>
+            <select
+              ref="userInput"
+              required
+              className="form-control"
+              value={this.state.gender}
+              onChange={this.onChangeGender}
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Age: </label>
+            <input
+              type="number"
+              required
+              className="form-control"
+              value={this.state.age}
+              onChange={this.onChangeAge}
+            />
+          </div>
+          <div className="form-group">
+            <label>Weight: </label>
+            <input
+              type="number"
+              required
+              className="form-control"
+              value={this.state.weight}
+              onChange={this.onChangeWeight}
+            />
+          </div>
+          <div className="form-group">
+            <label>Height: </label>
+            <input
+              type="number"
+              required
+              className="form-control"
+              value={this.state.height}
+              onChange={this.onChangeHeight}
+            />
+          </div>
+          <div className="form-group">
+            <label>Unit: </label>
+            <select
+              ref="userInput"
+              required
+              className="form-control"
+              value={this.state.unit}
+              onChange={this.onChangeUnit}
+            >
+              <option value="Metric">Metric</option>
+              <option value="Imperial">Imperial</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Activity: </label>
+            <select
+              ref="userInput"
+              required
+              className="form-control"
+              value={this.state.activity}
+              onChange={this.onChangeActivity}
+            >
+              <option value="Sedentary">Sedentary</option>
+              <option value="Light Exercise">Light Exercise</option>
+              <option value="Moderate Exercise">Moderate Exercise</option>
+              <option value="Heavy Exercise">Heavy Exercise</option>
+              <option value="Athlete">Athlete</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <h2>
+              BMI: {this.state.bmi} Category: {this.state.bmiCategory}
+            </h2>
+            <h2>BMR: {this.state.bmr}</h2>
+            <h2>Daily Calories: {this.state.dailyCalories} </h2>
+            <button type="button" onClick={() => this.updateDetails()}>
+              Update Details
+            </button>
+          </div>
+          <div className="form-group">
+            <input
+              type="submit"
+              value="Create User"
+              className="btn btn-primary"
+            />
           </div>
         </form>
       </div>
-    )
+    );
   }
 }

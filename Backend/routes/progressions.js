@@ -10,15 +10,15 @@ router.route('/').get((req, res) => {
 
 // Add Progression
 router.route('/add').post((req, res) => {
-  const progname = req.body.progname;
+  const programName = req.body.programName;
   const category = req.body.category;
-  const discription = req.body.discription;
+  const description = req.body.description;
   const exercises = req.body.exercises;
 
   const newProgression = new Progression({
-    progname,
+    programName,
     category,
-    discription,
+    description,
     exercises
   });
 
@@ -45,9 +45,9 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Progression.findById(req.params.id)
     .then(progression => {
-      progression.progname = req.body.progname;
+      progression.programName = req.body.programName;
       progression.category = req.body.category;
-      progression.discription = req.body.discription;
+      progression.description = req.body.description;
       progression.exercises = req.body.exercises;
 
       progression.save()

@@ -5,17 +5,17 @@ export default class EditExercise extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeExercisename = this.onChangeExercisename.bind(this);
+    this.onChangeExerciseName = this.onChangeExerciseName.bind(this);
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeDiscription = this.onChangeDiscription.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-        exercisename: '',
+        exerciseName: '',
         type: 'Repetition',
         category: 'Strength',
-        discription: '',
+        description: '',
         progressionId: '',
         username: '',
         userId: ''
@@ -26,10 +26,10 @@ export default class EditExercise extends Component {
     axios.get('http://localhost:5000/exercises/'+this.props.match.params.id)
       .then(response => {
         this.setState({
-          exercisename: response.data.exercisename,
+          exerciseName: response.data.exerciseName,
           type: response.data.type,
           category: response.data.category,
-          discription: response.data.discription,
+          description: response.data.description,
           progressionId: response.data.progressionId,
           userId: response.data.userId
         })
@@ -45,9 +45,9 @@ export default class EditExercise extends Component {
       })
   }
 
-  onChangeExercisename(e) {
+  onChangeExerciseName(e) {
     this.setState({
-      exercisename: e.target.value
+      exerciseName: e.target.value
     })
   }
 
@@ -63,9 +63,9 @@ export default class EditExercise extends Component {
     });
   }
 
-  onChangeDiscription(e) {
+  onChangeDescription(e) {
     this.setState({
-        discription: e.target.value
+        description: e.target.value
     });
   }
 
@@ -73,10 +73,10 @@ export default class EditExercise extends Component {
     e.preventDefault();
 
     const exercise = {
-      exercisename: this.state.exercisename,
+      exerciseName: this.state.exerciseName,
       type: this.state.type,
       category: this.state.category,
-      discription: this.state.discription,
+      description: this.state.description,
       progressionId: this.state.progressionId,
       userId: this.state.userId,
     };
@@ -100,8 +100,8 @@ export default class EditExercise extends Component {
           <input  type="text"
               required
               className="form-control"
-              value={this.state.exercisename}
-              onChange={this.onChangeExercisename}
+              value={this.state.exerciseName}
+              onChange={this.onChangeExerciseName}
               />
         </div>
         <div className="form-group">
@@ -129,12 +129,12 @@ export default class EditExercise extends Component {
           </select>
         </div>        
         <div className="form-group">
-          <label>Discription: </label>
+          <label>Description: </label>
           <input 
               type="textarea" 
               className="form-control"
-              value={this.state.discription}
-              onChange={this.onChangeDiscription}
+              value={this.state.description}
+              onChange={this.onChangeDescription}
               />
         </div>
         <div className="form-group">

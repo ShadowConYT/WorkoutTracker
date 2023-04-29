@@ -10,18 +10,18 @@ router.route('/').get((req, res) => {
 
 // Add Exercise
 router.route('/add').post((req, res) => {
-  const exercisename = req.body.exercisename;
+  const exerciseName = req.body.exercisename;
   const type = req.body.type;
   const category = req.body.category;  
-  const discription = req.body.discription;
+  const description = req.body.discription;
   const progressionId = req.body.progressionId;
   const userId = req.body.userId;
 
   const newExercise = new Exercise({
-    exercisename,
+    exerciseName: exerciseName,
     type,
     category,
-    discription,
+    description: description,
     progressionId,
     userId
   });

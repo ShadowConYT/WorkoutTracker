@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const workoutlogSchema = new Schema({
-  workoutdate: { type: Date, required: true },
-  routinename: { type: String, required: true, trim: true },
+const workoutLogSchema = new Schema({
+  workoutDate: { type: Date, required: true },
+  routineName: { type: String, required: true, trim: true },
   duration: { type: Number, required: true },
   username: { type: String, required: true, trim: true }
 }, {
   timestamps: true,
 });
 
-const Workoutlog = mongoose.model('Workoutlog', workoutlogSchema);
+const WorkoutLog = mongoose.model('WorkoutLog', workoutLogSchema);
 
-module.exports = Workoutlog;
+module.exports = WorkoutLog;

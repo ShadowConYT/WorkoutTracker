@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import components
-import Navbar from "./components/navbar.component";
 import Home from "./components/home.component";
 import WorkoutLogList from "./components/workoutlogs-list.component";
 import CreateWorkoutLog from "./components/create-workoutlog.component";

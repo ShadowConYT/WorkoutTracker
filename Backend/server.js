@@ -10,9 +10,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = process.env.ATLAS_URI || 'mongodb://localhost:27017/wt';
+const uri = process.env.ATLAS_URI || 'mongodb://127.0.0.1:27017/';
 
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, { useNewUrlParser: true});
 
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -23,14 +23,14 @@ const usersRouter = require('./routes/users');
 const exercisesRouter = require('./routes/exercises');
 const progressionsRouter = require('./routes/progressions');
 const routinesRouter = require('./routes/routines');
-const workoutlogsRouter = require('./routes/workoutlogs');
+const workoutLogsRouter = require('./routes/workoutlogs');
 
 
 app.use('/users', usersRouter);
 app.use('/exercises', exercisesRouter);
 app.use('/progressions', progressionsRouter);
 app.use('/routines', routinesRouter);
-app.use('/workoutlogs', workoutlogsRouter);
+app.use('/workoutlogs', workoutLogsRouter);
 
 
 app.listen(port, () => {

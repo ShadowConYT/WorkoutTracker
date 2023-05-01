@@ -12,7 +12,7 @@ const userSchema = new Schema({
   bmi: { type: Number, required: true },
   bmiCategory: { type: String, required: true },
   bmr: { type: Number, required: true },
-  dailycalories: { type: Number, required: true }
+  dailyCalories: { type: Number, required: true }
 }, {
   timestamps: true,
 });

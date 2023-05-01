@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+Backend/node_modules
 /.pnp
 .pnp.js
 
@@ -36,3 +37,7 @@ yarn-error.log*
 
 # IntelliJ project files
 .idea
+
+# package-lock.json
+package-lock.json
+Backend/package.json

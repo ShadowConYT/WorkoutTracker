@@ -98,9 +98,9 @@ export default class CreateWorkoutLog extends Component {
     return (
       <div>
         <Navbar />
-        <h3>Log Workout</h3>
-        <form onSubmit={this.onSubmit}>
-        <div className="form-group">
+        <h3 style={{textAlign:'center',fontWeight:'bold',textTransform:'uppercase',marginBottom:'5px',fontSize:'900',letterSpacing:'2px',color:'white'}}>Log Workout</h3>
+        <br/>  <form onSubmit={this.onSubmit}>
+        <div style={{textAlign:'center',fontWeight:'bolder',marginBottom:'5px',fontSize:'large'}} className="form-group">
             <label>Workout Date: </label>
             <div>
               <DatePicker
@@ -113,9 +113,9 @@ export default class CreateWorkoutLog extends Component {
               />
             </div>
           </div>
-        <div className="form-group"> 
-            <label>Routine Name: </label>
-            <select ref="userInput"
+        <div style={{textAlign:'center'}} className="form-group"> 
+            <label style={{fontWeight:'bolder',marginBottom:'5px',fontSize:'large'}}>Routine Name: </label>
+            <select style={{width:'50%',left:'auto',right:'auto',position:'relative'}} ref="userInput"
                 required
                 className="form-control"
                 value={this.state.routineName}
@@ -130,8 +130,8 @@ export default class CreateWorkoutLog extends Component {
                 }
             </select>
           </div>
-          <div className="form-group">
-            <label>Duration (in minutes): </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{fontWeight:'bolder',marginBottom:'5px',fontSize:'large'}}>Duration (in minutes): </label>
             <input 
                 type="text" 
                 className="form-control"
@@ -139,8 +139,8 @@ export default class CreateWorkoutLog extends Component {
                 onChange={this.onChangeDuration}
                 />
           </div>
-          <div className="form-group"> 
-            <label>User: </label>
+          <div style={{textAlign:'center'}} className="form-group"> 
+            <label style={{fontWeight:'bolder',marginBottom:'5px',fontSize:'large'}}>User: </label>
             <select ref="userInput"
                 required
                 className="form-control"
@@ -156,7 +156,7 @@ export default class CreateWorkoutLog extends Component {
                 }
             </select>
           </div>
-          <div className="form-group">
+          <div style={{textAlign:'center'}} className="form-group">
             <input type="submit" value="Log Workout" className="btn btn-primary" />
           </div>
         </form>

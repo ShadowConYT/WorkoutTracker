@@ -71,10 +71,10 @@ export default class WorkoutLogList extends Component {
     return (
       <div>
         <Navbar />
-        <h3>All Workouts</h3>
+        <h3 style={{textAlign:'center',color:'white',fontWeight:'bold',textTransform:'uppercase',letterSpacing:'2px'}}>All Workouts</h3><br />
         <table className="table">
           <thead className="thead-light">
-            <tr>
+            <tr style={{color:"#27f3ee"}}>
               <th>Workout Date</th>
               <th>Routine Name</th>
               <th>Duration</th>
@@ -82,7 +82,7 @@ export default class WorkoutLogList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.workoutLogList()}</tbody>
+          <tbody style={{color:'white'}}>{this.workoutLogList()}</tbody>
         </table>
       </div>
     );

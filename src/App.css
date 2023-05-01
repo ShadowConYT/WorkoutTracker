@@ -2,7 +2,7 @@
   text-align: center;
 }
 body{
-  background:linear-gradient(to right, #00b4db, #0083b0);
+  background:linear-gradient(to right, black, black);
 
 }
 .App-logo {
@@ -16,39 +16,21 @@ body{
   }
 }
 #navb{
-  color: black;
+  color: white;
   font-weight: bolder;
   padding-right: 30px;
   text-transform:capitalize;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#navb:hover{
+  color: #27f3ee;
+  transition: 0.5s;
 }
 
 :root{
   /* color type A */
-  --line_color : white ;
+  --line_color : #27f3ee ;
   --back_color : #FFECF6  ;
 
   /* color type B */

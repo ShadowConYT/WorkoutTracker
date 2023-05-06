@@ -1,15 +1,15 @@
-const router = require('express').Router();
-let Progression = require('../models/progression.model');
+const router = require("express").Router();
+let Progression = require("../models/progression.model");
 
 // Get All Progressions
-router.route('/').get((req, res) => {
-    Progression.find()
-    .then(progressions => res.json(progressions))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route("/").get((req, res) => {
+  Progression.find()
+    .then((progressions) => res.json(progressions))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Add Progression
-router.route('/add').post((req, res) => {
+router.route("/add").post((req, res) => {
   const programName = req.body.programName;
   const category = req.body.category;
   const description = req.body.description;
@@ -19,42 +19,48 @@ router.route('/add').post((req, res) => {
     programName,
     category,
     description,
-    exercises
+    exercises,
   });
 
-  newProgression.save()
-  .then((response) => res.json({'data': 'Progression added!', 'id': response._id}))
-  .catch(err => res.status(400).json('Error: ' + err));
+  newProgression
+    .save()
+    .then((response) =>
+      res.json({ data: "Progression added!", id: response._id })
+    )
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Get Progression
-router.route('/:id').get((req, res) => {
-    Progression.findById(req.params.id)
-    .then(progression => res.json(progression))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route("/:id").get((req, res) => {
+  Progression.findById(req.params.id)
+    .then((progression) => res.json(progression))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Delete Progression
-router.route('/:id').delete((req, res) => {
-    Progression.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Progression deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route("/:id").delete((req, res) => {
+  Progression.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Progression deleted."))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Update Progression
-router.route('/update/:id').post((req, res) => {
-    Progression.findById(req.params.id)
-    .then(progression => {
+router.route("/update/:id").post((req, res) => {
+  Progression.findById(req.params.id)
+    .then((progression) => {
       progression.programName = req.body.programName;
       progression.category = req.body.category;
       progression.description = req.body.description;
       progression.exercises = req.body.exercises;
 
-      progression.save()
-      .then((response) => res.json({'data': 'Progression Updated!', 'id': response._id}))
-        .catch(err => res.status(400).json('Error: ' + err));
+      progression
+        .save()
+        .then((response) =>
+          res.json({ data: "Progression Updated!", id: response._id })
+        )
+        .catch((err) => res.status(400).json("Error: " + err));
     })
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;

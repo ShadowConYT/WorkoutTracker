@@ -69,8 +69,8 @@ export default class ExercisesList extends Component {
     return (
       <div>
         <Navbar />
-        <h3>All Exercises</h3>
-        <table className="table">
+        <h3 style={{color:'white',textAlign:'center',letterSpacing:'2px'}}>All Exercises</h3>
+        <table style={{color:'#27f3ee'}} className="table">
           <thead className="thead-light">
             <tr>
               <th>Exercise Name</th>
@@ -81,7 +81,7 @@ export default class ExercisesList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.exerciseList()}</tbody>
+          <tbody style={{color:'whitesmoke'}}>{this.exerciseList()}</tbody>
         </table>
       </div>
     );

@@ -110,10 +110,10 @@ export default class CreateRoutine extends Component {
     return (
       <div>
         <Navbar />
-        <h3>Create New Routine</h3>
+        <h3 style={{color:'white',textAlign:'center'}}>Create New Routine</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Routine Name: </label>
+            <label style={{color:'#27f3ee'}}>Routine Name: </label>
             <input
               type="text"
               required
@@ -121,9 +121,9 @@ export default class CreateRoutine extends Component {
               value={this.state.routineName}
               onChange={this.onChangeRoutineName}
             />
-          </div>
+          </div><br/>
           <div className="form-group">
-            <label>Routine Type: </label>
+            <label style={{color:'#27f3ee'}}>Routine Type: </label>
             <select
               ref="userInput"
               required
@@ -136,11 +136,11 @@ export default class CreateRoutine extends Component {
               <option value="Mobility">Mobility</option>
               <option value="Others">Others</option>
             </select>
-          </div>
+          </div><br/>
           <div className="form-group">
-            <label>Exercise: </label>
+            <label style={{color:'#27f3ee'}}>Exercise: </label>
             <TableScrollbar rows={5}>
-              <table className="table">
+              <table style={{color:'#27f3ee'}} className="table">
                 <thead className="thead-light">
                   <tr>
                     <th>Progression Name</th>
@@ -153,10 +153,10 @@ export default class CreateRoutine extends Component {
               </table>
             </TableScrollbar>
           </div>
-          <div className="form-group">
-            <button>Add Exercise</button>
-          </div>
-          <div className="form-group">
+          <div style={{marginLeft:'50%'}} className="form-group">
+            <button style={{borderRadius:'5px'}}>Add Exercise</button>
+          </div><br/>
+          <div style={{marginLeft:'50%'}} className="form-group">
             <input
               type="submit"
               value="Create Routine"

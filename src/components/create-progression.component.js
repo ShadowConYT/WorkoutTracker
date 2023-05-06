@@ -168,10 +168,10 @@ export default class CreateProgression extends Component {
     return (
       <div>
         <Navbar />
-        <h3>Create New Progression</h3>
+        <h3 style={{color:'white',textAlign:'center'}}>Create New Progression</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Progression Name: </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Progression Name: </label>
             <input
               type="text"
               required
@@ -180,8 +180,8 @@ export default class CreateProgression extends Component {
               onChange={this.onChangeProgramName}
             />
           </div>
-          <div className="form-group">
-            <label>Category: </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Category: </label>
             <select
               ref="userInput"
               required
@@ -195,8 +195,8 @@ export default class CreateProgression extends Component {
               <option value="Others">Others</option>
             </select>
           </div>
-          <div className="form-group">
-            <label>description: </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>description: </label>
             <input
               type="textarea"
               className="form-control"
@@ -204,10 +204,10 @@ export default class CreateProgression extends Component {
               onChange={this.onChangeDescription}
             />
           </div>
-          <div className="form-group">
-            <label>Available Exercises: </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{color:'#27f3ee', fontWeight:"bold",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Available Exercises: </label>
             <TableScrollbar rows={5}>
-              <table className="table">
+              <table style={{maxWidth:'99%',color:'white'}} className="table">
                 <thead className="thead-light">
                   <tr>
                     <th>Exercise Name</th>
@@ -220,11 +220,11 @@ export default class CreateProgression extends Component {
               </table>
             </TableScrollbar>
           </div>
-          <div className="form-group">
-            <label>Selected Exercises: </label>
+          <div style={{textAlign:'center'}} className="form-group">
+            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Selected Exercises: </label>
             <TableScrollbar rows={5}>
-              <table className="table">
-                <thead className="thead-light">
+              <table style={{maxWidth:'99%',color:'white'}} className="table">
+                <thead  className="thead-light">
                   <tr>
                     <th>Exercise Name</th>
                     <th>description</th>
@@ -236,7 +236,7 @@ export default class CreateProgression extends Component {
               </table>
             </TableScrollbar>
           </div>
-          <div className="form-group">
+          <div style={{textAlign:'center',marginBottom:'5vh'}} className="form-group">
             <input
               type="submit"
               value="Create Progression"

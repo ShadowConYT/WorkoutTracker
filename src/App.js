@@ -18,6 +18,7 @@ import EditUser from "./components/edit-user.component";
 // import RoutinesList from "./components/routines-list.component";
 import CreateRoutine from "./components/create-routine.component";
 // import EditRoutine from "./components/edit-routine.component";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

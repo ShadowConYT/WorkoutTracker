@@ -167,15 +167,15 @@ export default class CreateUser extends Component {
     const user = {
       username: this.state.username,
       gender: this.state.gender,
-      age: this.state.age,
-      weight: this.state.weight,
-      height: this.state.height,
+      age: Number(this.state.age),
+      weight: Number(this.state.weight),
+      height: Number(this.state.height),
       unit: this.state.unit,
       activity: this.state.activity,
-      bmi: this.state.bmi,
+      bmi: Number(this.state.bmi),
       bmiCategory: this.state.bmiCategory,
-      bmr: this.state.bmr,
-      dailyCalories: this.state.dailyCalories,
+      bmr: Number(this.state.bmr),
+      dailyCalories: Number(this.state.dailyCalories),
     };
 
     console.log(user);

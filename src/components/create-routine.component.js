@@ -5,8 +5,8 @@ import Navbar from "./navbar.component";
 
 const Exercise = (props) => (
   <tr>
-    <td>{props.exercise.progname}</td>
-    <td>{props.exercise.exercisename}</td>
+    <td>{props.exercise.programName}</td>
+    <td>{props.exercise.exerciseName}</td>
     <td>{props.exercise.type}</td>
     <td>
       <a

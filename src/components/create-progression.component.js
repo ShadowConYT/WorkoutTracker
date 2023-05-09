@@ -5,7 +5,7 @@ import Navbar from "./navbar.component";
 
 const Exercise = (props) => (
   <tr>
-    <td>{props.exercise.exercisename}</td>
+    <td>{props.exercise.exerciseName}</td>
     <td>{props.exercise.description}</td>
     <td>{props.exercise.progressionId ? "" : "Yes"}</td>
     <td>
@@ -23,7 +23,7 @@ const Exercise = (props) => (
 
 const SelectedExercise = (props) => (
   <tr>
-    <td>{props.exercise.exercisename}</td>
+    <td>{props.exercise.exerciseName}</td>
     <td>{props.exercise.description}</td>
     <td>{props.exercise.progressionId ? "" : "Yes"}</td>
     <td>
@@ -140,7 +140,7 @@ export default class CreateProgression extends Component {
         );
       });
     } else {
-      console.log(this.state.selectedExercises.length);
+      // console.log(this.state.selectedExercises);
     }
   }
 
@@ -166,7 +166,7 @@ export default class CreateProgression extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{color:'white'}}>
         <Navbar />
         <h3 style={{color:'white',textAlign:'center'}}>Create New Progression</h3>
         <form onSubmit={this.onSubmit}>
@@ -196,7 +196,7 @@ export default class CreateProgression extends Component {
             </select>
           </div>
           <div style={{textAlign:'center'}} className="form-group">
-            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>description: </label>
+            <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Description: </label>
             <input
               type="textarea"
               className="form-control"
@@ -206,8 +206,7 @@ export default class CreateProgression extends Component {
           </div>
           <div style={{textAlign:'center'}} className="form-group">
             <label style={{color:'#27f3ee', fontWeight:"bold",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Available Exercises: </label>
-            <MDBTable  responsive={true}>
-              <table style={{maxWidth:'99%',color:'white'}} className="table">
+            <MDBTable  responsive={true} style={{color: "white"}}>
                 <thead className="thead-light">
                   <tr>
                     <th>Exercise Name</th>
@@ -217,13 +216,11 @@ export default class CreateProgression extends Component {
                   </tr>
                 </thead>
                 <tbody>{this.allExerciseList()}</tbody>
-              </table>
             </MDBTable>
           </div>
           <div style={{textAlign:'center'}} className="form-group">
             <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Selected Exercises: </label>
-            <MDBTable responsive={true}>
-              <table style={{maxWidth:'99%',color:'white'}} className="table">
+            <MDBTable responsive={true} style={{color: "white"}}>
                 <thead  className="thead-light">
                   <tr>
                     <th>Exercise Name</th>
@@ -233,7 +230,6 @@ export default class CreateProgression extends Component {
                   </tr>
                 </thead>
                 <tbody>{this.selectedExerciseList()}</tbody>
-              </table>
             </MDBTable>
           </div>
           <div style={{textAlign:'center',marginBottom:'5vh'}} className="form-group">

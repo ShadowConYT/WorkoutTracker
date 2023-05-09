@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import TableScrollbar from "react-table-scrollbar";
+import { MDBTable } from 'mdb-react-ui-kit';
 import Navbar from "./navbar.component";
 
 const Exercise = (props) => (
@@ -139,7 +139,7 @@ export default class CreateRoutine extends Component {
           </div><br/>
           <div className="form-group">
             <label style={{color:'#27f3ee'}}>Exercise: </label>
-            <TableScrollbar rows={5}>
+            <MDBTable responsive={true}>
               <table style={{color:'#27f3ee'}} className="table">
                 <thead className="thead-light">
                   <tr>
@@ -151,7 +151,7 @@ export default class CreateRoutine extends Component {
                 </thead>
                 <tbody>{this.exerciseList()}</tbody>
               </table>
-            </TableScrollbar>
+            </MDBTable>
           </div>
           <div style={{marginLeft:'50%'}} className="form-group">
             <button style={{borderRadius:'5px'}}>Add Exercise</button>

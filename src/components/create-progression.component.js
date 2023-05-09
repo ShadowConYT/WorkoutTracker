@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import TableScrollbar from "react-table-scrollbar";
+import { MDBTable } from 'mdb-react-ui-kit';
 import Navbar from "./navbar.component";
 
 const Exercise = (props) => (
@@ -206,7 +206,7 @@ export default class CreateProgression extends Component {
           </div>
           <div style={{textAlign:'center'}} className="form-group">
             <label style={{color:'#27f3ee', fontWeight:"bold",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Available Exercises: </label>
-            <TableScrollbar rows={5}>
+            <MDBTable  responsive={true}>
               <table style={{maxWidth:'99%',color:'white'}} className="table">
                 <thead className="thead-light">
                   <tr>
@@ -218,11 +218,11 @@ export default class CreateProgression extends Component {
                 </thead>
                 <tbody>{this.allExerciseList()}</tbody>
               </table>
-            </TableScrollbar>
+            </MDBTable>
           </div>
           <div style={{textAlign:'center'}} className="form-group">
             <label style={{color:'#27f3ee', fontWeight:"bolder",letterSpacing:'2px',padding:'10px 0px 10px 0px'}}>Selected Exercises: </label>
-            <TableScrollbar rows={5}>
+            <MDBTable responsive={true}>
               <table style={{maxWidth:'99%',color:'white'}} className="table">
                 <thead  className="thead-light">
                   <tr>
@@ -234,7 +234,7 @@ export default class CreateProgression extends Component {
                 </thead>
                 <tbody>{this.selectedExerciseList()}</tbody>
               </table>
-            </TableScrollbar>
+            </MDBTable>
           </div>
           <div style={{textAlign:'center',marginBottom:'5vh'}} className="form-group">
             <input

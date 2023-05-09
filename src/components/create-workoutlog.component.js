@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-date-picker';
 import Navbar from "./navbar.component";
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 export default class CreateWorkoutLog extends Component {
   constructor(props) {

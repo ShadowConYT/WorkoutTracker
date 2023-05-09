@@ -256,3 +256,8 @@ body{
   justify-content : center ;
   align-items : center ;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}

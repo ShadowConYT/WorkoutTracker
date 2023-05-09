@@ -7,7 +7,7 @@ const Slide2 = () => {
   return (
     <Container fluid >
     <Stack>
-        <Typography sx={{mt:'20px'}} color={'#27f3ee'} style={{textAlign:'center',letterSpacing:'10px'}} fontSize={'50px'} fontWeight={'900'}>
+        <Typography sx={{mt:{lg:'20px',xs:'10px'}}} color={'#27f3ee'} style={{textAlign:'center',letterSpacing:'10px'}} fontSize={{lg:'50px',xs:'30px'}} fontWeight={'900'}>
             WHAT IS MUSCLE MONITOR ?
         </Typography>
         <Stack direction={'row-reverse'}>
@@ -21,7 +21,8 @@ const Slide2 = () => {
             their way. The Titans of the walls, will continue their march until every trace of life beyond our shores is trampled 
             flat, and the people of Paradis are all that remains of humanity.
             </Typography>
-            <img  style={{transform:'scaleX(-1)', zIndex:-1}} src={gokuff} height={'600px'} width={'600px'}/>
+            <img style={{transform:'scaleX(-1)',      
+          zIndex:-1,display:'none'}} src={gokuff} height={'600px'} width={'600px'}/>
         </Stack>
     </Stack>
     </Container>

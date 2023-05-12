@@ -5,6 +5,8 @@ import Slide2 from './mainpage/page2';
 import SearchExercises from "./searchexercises";
 import { Container } from "react-bootstrap";
 import Exercises from "./Exercises";
+import SimilarExercises from "./SimilarExercises";
+import ExerciseVideos from "./ExercisesVideos";
 
 /*export default class Home extends Component {
   render() {

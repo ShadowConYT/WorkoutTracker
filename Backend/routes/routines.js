@@ -19,11 +19,6 @@ router.route("/add").post((req, res) => {
     routineDetail,
     routineType,
   });
-
-  newRoutine
-    .save()
-    .then(() => res.json("Routine added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Get Routine
@@ -47,11 +42,6 @@ router.route("/update/:id").post((req, res) => {
       routine.routineName = req.body.routineName;
       routine.routineDetail = req.body.routineDetail;
       routine.routineType = req.body.routineType;
-
-      routine
-        .save()
-        .then(() => res.json("Routine updated!"))
-        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

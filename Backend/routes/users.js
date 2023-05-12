@@ -22,6 +22,13 @@ router.route("/add").post((req, res) => {
   const bmr = Number(req.body.bmr);
   const dailyCalories = Number(req.body.dailyCalories);
 
+  // check if user already exists
+    User.findOne({ username: username }).then((user) => {
+        if (user) {
+            return res.status(400).json({ username: "Username already exists" });
+        }
+    });
+
   const newUser = User.create({
     username,
     gender,
@@ -35,11 +42,6 @@ router.route("/add").post((req, res) => {
     bmr,
     dailyCalories: dailyCalories,
   });
-
-  newUser
-    .save()
-    .then((response) => res.json({ data: "User added!", id: response._id }))
-    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Get User
@@ -71,11 +73,6 @@ router.route("/update/:id").post((req, res) => {
       user.bmiCategory = req.body.bmiCategory;
       user.bmr = Number(req.body.bmr);
       user.dailyCalories = Number(req.body.dailyCalories);
-
-      user
-        .save()
-        .then((response) => res.json({ data: "User added!", id: response._id }))
-        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

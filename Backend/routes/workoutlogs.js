@@ -21,11 +21,6 @@ router.route("/add").post((req, res) => {
     duration,
     username,
   });
-
-  newWorkoutLog
-    .save()
-    .then(() => res.json("Workout Log added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Get WorkoutLog
@@ -50,11 +45,6 @@ router.route("/update/:id").post((req, res) => {
       workoutLog.routinename = req.body.routinename;
       workoutLog.duration = Number(req.body.duration);
       workoutLog.username = req.body.username;
-
-      workoutLog
-        .save()
-        .then(() => res.json("Workout Log updated!"))
-        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

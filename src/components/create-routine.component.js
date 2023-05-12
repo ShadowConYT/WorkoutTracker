@@ -114,11 +114,11 @@ export default class CreateRoutine extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label style={{color:'#27f3ee'}}>Routine Name: </label>
-            <input
+            <input disabled="" style={{zIndex:'1000'}}
               type="text"
               required
               className="form-control"
-              value={this.state.routineName}
+              defaultValue={this.state.routineName}
               onChange={this.onChangeRoutineName}
             />
           </div><br/>

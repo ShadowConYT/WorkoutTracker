@@ -98,10 +98,10 @@ export default class CreateExercise extends Component {
     return (
       <div>
         <Navbar />
-        <h3>Create New Exercise</h3>
+        <h3 style={{color:'white',textAlign:'center',fontWeight:'bolder',textTransform:'uppercase'}}>Create New <span style={{color:'#27f3ee'}}>Exercise</span></h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Exercise Name: </label>
+          <div style={{color:'#27f3ee',fontWeight:'bold',paddingBottom:'10px'}} className="form-group">
+            <label style={{paddingBottom:'10px'}}>Exercise Name: </label>
             <input
               type="text"
               required
@@ -110,8 +110,8 @@ export default class CreateExercise extends Component {
               onChange={this.onChangeExerciseName}
             />
           </div>
-          <div className="form-group">
-            <label>Type: </label>
+          <div style={{color:'#27f3ee',fontWeight:'bold',paddingBottom:'10px'}} className="form-group">
+            <label style={{paddingBottom:'10px'}}>Type: </label>
             <select
               ref="userInput"
               required
@@ -123,8 +123,8 @@ export default class CreateExercise extends Component {
               <option value="Duration">Duration</option>
             </select>
           </div>
-          <div className="form-group">
-            <label>Category: </label>
+          <div style={{color:'#27f3ee',fontWeight:'bold',paddingBottom:'10px'}} className="form-group">
+            <label style={{paddingBottom:'10px'}}>Category: </label>
             <select
               ref="userInput"
               required
@@ -138,8 +138,8 @@ export default class CreateExercise extends Component {
               <option value="Others">Others</option>
             </select>
           </div>
-          <div className="form-group">
-            <label>Description: </label>
+          <div style={{color:'#27f3ee',fontWeight:'bold',paddingBottom:'10px'}} className="form-group">
+            <label style={{paddingBottom:'10px'}}>Description: </label>
             <input
               type="textarea"
               className="form-control"
@@ -147,8 +147,8 @@ export default class CreateExercise extends Component {
               onChange={this.onChangeDescription}
             />
           </div>
-          <div className="form-group">
-            <label>User: </label>
+          <div style={{color:'#27f3ee',fontWeight:'bold',paddingBottom:'10px'}} className="form-group">
+            <label style={{paddingBottom:'10px'}}>User: </label>
             <select
               ref="userInput"
               required
@@ -165,6 +165,7 @@ export default class CreateExercise extends Component {
               })}
             </select>
           </div>
+          <br/>
           <div className="form-group">
             <input
               type="submit"

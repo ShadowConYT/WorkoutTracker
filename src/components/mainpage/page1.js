@@ -32,10 +32,11 @@ const Slide1 = ({ setExercises, bodyPart, setBodyPart }) => {
         <Typography fontWeight={600} color="white" sx={{mt:'40px', opacity: '0.1', display: { lg: 'block', xs: 'none' }, fontSize: '155px' }}>
         FITNESS
         </Typography>
-        <Typography sx={{marginBottom:{xs:'200px'}}}></Typography>
+        <Typography sx={{marginBottom:{xs:'150px'}}}></Typography>
 
         <img src={gokuff} className='img-fluid' style={{
           position:'absolute',
+          display:'flex',
           marginLeft:'50%',
           marginTop:'-3%',
           top:'0',

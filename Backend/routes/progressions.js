@@ -22,12 +22,6 @@ router.route("/add").post((req, res) => {
     exercises,
   });
 
-  newProgression
-    .save()
-    .then((response) =>
-      res.json({ data: "Progression added!", id: response._id })
-    )
-    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // Get Progression
@@ -52,13 +46,6 @@ router.route("/update/:id").post((req, res) => {
       progression.category = req.body.category;
       progression.description = req.body.description;
       progression.exercises = req.body.exercises;
-
-      progression
-        .save()
-        .then((response) =>
-          res.json({ data: "Progression Updated!", id: response._id })
-        )
-        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
